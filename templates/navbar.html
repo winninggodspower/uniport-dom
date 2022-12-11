@@ -37,10 +37,14 @@
 
 <script>
   const url = location.href;
+  const active_nav_class = " active border-bottom border-warning border-3";
   console.log(url);
   if (url.includes('accomodation')){
-    document.getElementById('accomodation-nav').classList += " active border-bottom border-warning border-3";
-  }else{
-    document.getElementById('home-nav').classList += " active border-bottom border-warning border-3"
+    document.getElementById('accomodation-nav').classList += active_nav_class;
+  }else if(url.includes('naija')){
+    document.getElementById('naijawifecard-nav').classList += active_nav_class;
+  }
+  else{
+    document.getElementById('home-nav').classList += active_nav_class;
   }
 </script>
