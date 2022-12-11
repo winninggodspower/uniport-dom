@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>Intercultural Gateway Accomodation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+{% endblock head %}
+
+{% block body %}
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../static/images/room.webp" class="d-block w-100" height="550px" alt="...">
+                <div class="position-absolute top-50 start-50 text-center text-light translate-middle d-md-block">
+                    <p class="lead">Simple-Unique-Friendly</p>
+                    <h5 class="display-1 fw-bold">Make yourself at home in our <span class="text-warning">Appartments</span>
+                    </h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/room.webp" class="d-block w-100" height="550px" alt="...">
+                <div class="position-absolute top-50 start-50 text-center text-light translate-middle d-md-block">
+                    <p class="lead">Simple-Unique-Friendly</p>
+                    <h5 class="display-1 fw-bold">Make yourself at home in our <span class="text-warning">Accomodation</span>
+                    </h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/room.webp" class="d-block w-100" height="550px" alt="...">
+                <div class="position-absolute top-50 start-50 text-center text-light translate-middle d-md-block">
+                    <p class="lead">Simple-Unique-Friendly</p>
+                    <h5 class="display-1 fw-bold">Make yourself at home in our <span class="text-warning">Luxery</span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <main class="container mt-5">
+
+        <div class="text-center text-md-start">
+            <span>Our Living Room</span>
+            <h3 class="fs-2 mb-3 mx-auto mx-md-0" style="width: 500px; max-width: 80%;">The most memorable rest time starts here</h3>
+        </div>
+
+        <div class="row justify-content-center justify-content-md-between" style="--bs-gutter-x: 0rem;">
+
+            {% for apartment in Apartments %}
+                <div class="card col-md-4  mb-3" style="width: 18rem;">
+                    <img src="{{ apartment.thumbnail.url }}" class="card-img-top" height="215" alt="...">
+                    <span role="button" id="{{apartment.id}}" data-likebtn="" class="position-absolute top-0 m-3 d-flex flex-column text-center fw-bold text-warning" style="font-size: 1.2rem;">
+                        <i class="bi bi-heart"></i>
+                        <span id='like-count-{{apartment.id}}'>{{ apartment.like_count }}</span>
+                    </span>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ apartment.title }}</h5>
+                        <p class="card-text">{{ apartment.description }}</p>
+                        <p>Room Price: <span class="fw-bold">${{ apartment.price }}/Month</span></p>
+                        
+                        <a href="{% url 'checkout' apartment.id %}" class="btn btn-warning text-light">Book room</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            
+        </div>
+
+    </main>
+
+    <script>
+        const LoggedIn = '{{ user.is_authenticated }}' === 'True';
+    </script>
+
+    <script src="{% static 'js/like.js' %}"></script>
+{% endblock body %}

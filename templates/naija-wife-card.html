@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+
+    <title> Naija Wife Card</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <link rel="stylesheet" href="../static/css/crossfade.css">
+
+{% endblock head %}
+
+
+{% block body %}
+    
+    <main class="">
+
+        <div class="header " id="crossfade-img">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <span class="display-1 text-warning fw-bold">Get Your Naija Wife Card Today</span>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div>
+
+                <h3 class="text-warning">ONLY REQUIREMENT FOR NAIJA WIFE CARD</h3>
+                <p class="fs-5">To be married to a Nigerian. Once you're married, you're qualified to get your Naija
+                    Wife Card.
+                    <span class="fw-bold">NO WAITING PERIOD!</span>
+                </p>
+                <p class="lead">Fill out the form below to request the list of documents needed to get your NWC!</p>
+
+            </div>
+
+            <form class="my-5" action="{% url 'naija_wife_card' %}" method="post">
+                {% csrf_token %}
+                <legend class="text-warning fw-bolder">NWC REQUEST FORM</legend>
+
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Fullname`</label>
+                    <input type="text"  name="fullname" class="form-control" id="fullname">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="phone" class="form-control" name="phone" id="phone">
+                </div>
+            
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                    <label for="spouse-name" class="form-label">Spouse Name</label>
+                    <input type="text" class="form-control" name="spouse-name" id="spouse-name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="spouse-phone" class="form-label">Spouse Contact</label>
+                    <input type="phone" class="form-control" name="spouse-phone" id="spouse-phone">
+                </div>
+                
+                <button type="submit" class="btn btn-warning w-100 mt-3">Submit</button>
+            </form>
+
+        </div>
+
+    </main>
+
+{% endblock body %}
+</body>
+
+</html>

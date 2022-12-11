@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block head %}
+    <title>Register</title>
+{% endblock head %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div id="form-container" class="mx-auto">
+            <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="invalid-feedback">{{error}}</div>
+                            {% endfor %}
+                        {% endif %}
+                            
+                    </div>
+                {% endfor %}
+                <button class="btn btn-dark" type="submit">Register</button>
+            </form>
+        </div>
+    
+    </div>
+    <style>
+        #form-container{
+            max-width: 700px;
+        }
+    </style>
+
+{% endblock %}
+    
